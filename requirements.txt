@@ -21,6 +21,7 @@ faiss-cpu==1.9.0.post1
 # --- Document Loaders ---
 unstructured
 networkx
+pandas
 openpyxl==3.1.5
 
 # --- Google Sheets ---
