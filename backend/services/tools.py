@@ -120,6 +120,14 @@ def lookup_order(order_id: str) -> str:
         hints.
     """
     try:
+        # Robustly handle LLM passing a JSON string as the single argument
+        if isinstance(order_id, str) and order_id.strip().startswith("{"):
+            try:
+                parsed = json.loads(order_id)
+                order_id = parsed.get("order_id", order_id)
+            except json.JSONDecodeError:
+                pass
+                
         logger.info("lookup_order called with order_id: %s", order_id)
         result = sheets_service.lookup_order(order_id)
         return json.dumps(result, indent=2)
@@ -173,6 +181,16 @@ def create_refund_ticket(
         with recovery hints.
     """
     try:
+        # Robustly handle LLM passing a JSON string as the single argument (order_id)
+        if isinstance(order_id, str) and order_id.strip().startswith("{"):
+            try:
+                parsed = json.loads(order_id)
+                order_id = parsed.get("order_id", order_id)
+                if not reason and "reason" in parsed:
+                    reason = parsed["reason"]
+            except json.JSONDecodeError:
+                pass
+                
         logger.info(
             "create_refund_ticket called — order_id: %s, reason: %s",
             order_id,
