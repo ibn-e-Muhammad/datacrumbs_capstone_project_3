@@ -155,7 +155,7 @@ class CreateRefundTicketInput(BaseModel):
 @tool(args_schema=CreateRefundTicketInput)
 def create_refund_ticket(
     order_id: str,
-    reason: str,
+    reason: str = "",
 ) -> str:
     """Create a refund/support ticket in the ACME ticketing system for a
     verified order.
