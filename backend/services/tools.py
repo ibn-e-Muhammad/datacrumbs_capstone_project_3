@@ -19,6 +19,7 @@ import logging
 from typing import Optional
 
 from langchain_core.tools import tool
+from pydantic import BaseModel, Field
 
 from services import rag_service, sheets_service
 
@@ -29,7 +30,10 @@ logger = logging.getLogger(__name__)
 # Tool 1: RAG Knowledge Search
 # ---------------------------------------------------------------------------
 
-@tool
+class SearchKnowledgeInput(BaseModel):
+    query: str = Field(description="A natural-language question about ACME Corporation.")
+
+@tool(args_schema=SearchKnowledgeInput)
 def search_company_knowledge(query: str) -> str:
     """Search ACME Corporation's internal knowledge base for information about
     the company's policies, products, services, values, history, security
@@ -85,7 +89,10 @@ def search_company_knowledge(query: str) -> str:
 # Tool 2: Order Lookup
 # ---------------------------------------------------------------------------
 
-@tool
+class LookupOrderInput(BaseModel):
+    order_id: str = Field(description="The unique order identifier (e.g. 'ORD-001').")
+
+@tool(args_schema=LookupOrderInput)
 def lookup_order(order_id: str) -> str:
     """Look up a specific customer order by its Order ID from the live
     ACME orders database (Google Sheets).
@@ -130,7 +137,11 @@ def lookup_order(order_id: str) -> str:
 # Tool 3: Create Refund Ticket
 # ---------------------------------------------------------------------------
 
-@tool
+class CreateRefundTicketInput(BaseModel):
+    order_id: str = Field(description="The verified order ID (e.g. 'ORD-001').")
+    reason: str = Field(description="The customer-provided reason for requesting a refund.")
+
+@tool(args_schema=CreateRefundTicketInput)
 def create_refund_ticket(
     order_id: str,
     reason: str,
