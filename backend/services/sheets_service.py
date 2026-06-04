@@ -98,15 +98,20 @@ def lookup_order(order_id: str) -> Dict[str, Any]:
         records = worksheet.get_all_records()
 
         for record in records:
-            if str(record.get("Order ID", "")).strip().upper() == order_id.strip().upper():
+            # Make keys case-insensitive to handle variations like "Order Id" vs "Order ID"
+            normalized_record = {str(k).strip().lower(): v for k, v in record.items()}
+            
+            sheet_order_id = str(normalized_record.get("order id", ""))
+            
+            if sheet_order_id.strip().upper() == order_id.strip().upper():
                 logger.info("Order found: %s", order_id)
                 return {
                     "found": True,
-                    "order_id": str(record.get("Order ID", "")),
-                    "customer": str(record.get("Customer", "")),
-                    "item": str(record.get("Item", "")),
-                    "status": str(record.get("Status", "")),
-                    "amount": str(record.get("Amount", "")),
+                    "order_id": sheet_order_id,
+                    "customer": str(normalized_record.get("customer", "")),
+                    "item": str(normalized_record.get("item", "")),
+                    "status": str(normalized_record.get("status", "")),
+                    "amount": str(normalized_record.get("amount", "")),
                 }
 
         logger.info("Order not found: %s", order_id)
