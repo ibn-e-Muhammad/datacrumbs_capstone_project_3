@@ -17,12 +17,12 @@ This project is an AI-powered customer support agent for an e-commerce store. It
 ### Backend (Python FastAPI)
 - **Framework**: FastAPI
 - **Agent Architecture**: LangChain ReAct (Reason-Act-Observe) agent.
-- **LLM**: `gemini-2.5-flash-lite` with a temperature of 0.4 for deterministic yet conversational outputs.
+- **LLM**: `gemma-4-31b-it` with a temperature of 0.4 for deterministic yet conversational outputs.
 - **Memory**: `ConversationBufferMemory` keyed by `conversation_id`.
 - **RAG System**:
   - Local vector store using `faiss-cpu`.
   - Texts loaded using `TextLoader` and `UnstructuredExcelLoader`.
-  - Embeddings generated via `text-embedding-002` (`GoogleGenerativeAIEmbeddings`).
+  - Embeddings generated via `models/gemini-embedding-2` (`GoogleGenerativeAIEmbeddings`).
   - Search tool: `search_company_knowledge`.
 - **Google Sheets Integration**:
   - Tool: `lookup_order` (fetches order status).
@@ -32,11 +32,13 @@ This project is an AI-powered customer support agent for an e-commerce store. It
 ## Current Status & Executions
 1. **Initial Generation**: Subagents generated the base Next.js template and Python backend files but hit quota limits.
 2. **Manual Completion**: The remainder of the frontend UI components and the backend `main.py` entry point were written manually.
-3. **Bug Fixes**:
-   - Fixed an import error in `main.py` (`initialize_faiss_index` -> `initialize_vector_store`).
-   - Fixed an import error for `chat` vs `get_chat_response` from the agent service.
-   - Fixed a typing mismatch between the frontend and backend API (`history` vs `conversation_id`).
-   - Fixed a Tailwind CSS compilation issue in `globals.css` caused by Next.js/Tailwind parsing of the `selection:bg-violet-500/30` alpha modifier.
+3. **Extensive Error Fixing & Engineering**:
+   - **Agent/LLM Upgrade**: Upgraded base agent model to `gemma-4-31b-it`.
+   - **Vector Database**: Upgraded embedding model from an invalid format to Google's flagship `models/gemini-embedding-2` to allow FAISS to initialize securely.
+   - **JSON Parsing Resiliency**: Engineered a robust regex/markdown cleaner inside the Python tools to forcibly parse and recover stringified JSON payloads (e.g., handling trailing backticks) when LangChain's native JSON output parser inevitably fails.
+   - **Pydantic Validation Guardrails**: Modified the Pydantic tool schemas (e.g., `CreateRefundTicketInput`) to make secondary fields optional. This prevents `ValidationError` backend crashes when LangChain hallucinates tool-calling formats and forces all data into a single string. Added corresponding Python function signature defaults (`reason: str = ""`) to align seamlessly with the new schema.
+   - **Case-Insensitive Data Sync**: Rebuilt the `get_all_records` lookup logic in the Google Sheets service to aggressively normalize dictionary headers (e.g., `Order Id` vs `Order ID`) to prevent rigid exact-match failures when interfacing with live, user-modified Google Sheets.
+   - **Frontend Patch**: Fixed a Tailwind CSS compilation crash in `globals.css` caused by Next.js parsing of the `selection:bg-violet-500/30` alpha modifier.
 
 ## Setup Instructions
 1. Install backend dependencies: `pip install -r backend/requirements.txt`
