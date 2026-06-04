@@ -163,7 +163,7 @@ def _build_agent_executor(
     settings = get_settings()
 
     llm = ChatGoogleGenerativeAI(
-        model="gemma-4-31b-it",
+        model="gemma-4-26b-a4b-it",
         temperature=0.4,
         google_api_key=settings.google_api_key,
         convert_system_message_to_human=True,

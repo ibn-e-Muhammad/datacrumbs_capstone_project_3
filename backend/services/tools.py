@@ -123,9 +123,12 @@ def lookup_order(order_id: str) -> str:
         # Robustly handle LLM passing a JSON string as the single argument
         if isinstance(order_id, str) and order_id.strip().startswith("{"):
             try:
-                parsed = json.loads(order_id)
+                import re
+                # Clean any markdown codeblock formatting or trailing backticks
+                clean_json = re.sub(r"^```(?:json)?|```$", "", order_id.strip()).strip()
+                parsed = json.loads(clean_json)
                 order_id = parsed.get("order_id", order_id)
-            except json.JSONDecodeError:
+            except Exception:
                 pass
                 
         logger.info("lookup_order called with order_id: %s", order_id)
@@ -147,7 +150,7 @@ def lookup_order(order_id: str) -> str:
 
 class CreateRefundTicketInput(BaseModel):
     order_id: str = Field(description="The verified order ID (e.g. 'ORD-001').")
-    reason: str = Field(description="The customer-provided reason for requesting a refund.")
+    reason: str = Field(default="", description="The customer-provided reason for requesting a refund.")
 
 @tool(args_schema=CreateRefundTicketInput)
 def create_refund_ticket(
@@ -184,13 +187,22 @@ def create_refund_ticket(
         # Robustly handle LLM passing a JSON string as the single argument (order_id)
         if isinstance(order_id, str) and order_id.strip().startswith("{"):
             try:
-                parsed = json.loads(order_id)
-                order_id = parsed.get("order_id", order_id)
+                import re
+                clean_json = re.sub(r"^```(?:json)?|```$", "", order_id.strip()).strip()
+                parsed = json.loads(clean_json)
+                
+                # We need to extract the order_id, and if reason is missing, extract that too.
+                # Careful: don't overwrite order_id if parsed dict doesn't contain it.
+                if "order_id" in parsed:
+                    order_id = parsed["order_id"]
                 if not reason and "reason" in parsed:
                     reason = parsed["reason"]
-            except json.JSONDecodeError:
+            except Exception:
                 pass
                 
+        if not reason:
+            return '{"success": false, "error": "Reason is required to create a refund ticket. Please ask the user for a reason."}'
+
         logger.info(
             "create_refund_ticket called — order_id: %s, reason: %s",
             order_id,
