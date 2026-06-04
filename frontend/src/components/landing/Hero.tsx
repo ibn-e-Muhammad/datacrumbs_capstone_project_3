@@ -1,3 +1,5 @@
+"use client";
+
 import { BotMessageSquare, Sparkles } from "lucide-react";
 
 export function Hero() {
@@ -24,7 +26,10 @@ export function Hero() {
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-          <button className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-violet-600 text-white font-medium hover:bg-violet-500 transition-all shadow-lg shadow-violet-600/20 flex items-center justify-center gap-2">
+          <button 
+            onClick={() => window.dispatchEvent(new Event("open-chat"))}
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-violet-600 text-white font-medium hover:bg-violet-500 transition-all shadow-lg shadow-violet-600/20 flex items-center justify-center gap-2"
+          >
             <BotMessageSquare size={18} />
             Try the AI Agent
           </button>

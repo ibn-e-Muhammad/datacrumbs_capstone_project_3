@@ -15,22 +15,77 @@ from services.agent_service import chat
 
 # --- Monkey Patch for langchain-google-genai bug ---
 import langchain_google_genai.chat_models
-_original_response_to_result = langchain_google_genai.chat_models._response_to_result
 
-def _patched_response_to_result(response, *args, **kwargs):
-    # The Gemma API occasionally returns unmapped integer finish reasons (e.g., 19).
-    # This crashes the SDK when it blindly tries to access `candidate.finish_reason.name`.
-    # We intercept the response and mock the finish_reason if it's a raw integer.
-    if hasattr(response, "candidates") and response.candidates:
-        for candidate in response.candidates:
-            if hasattr(candidate, "finish_reason") and isinstance(candidate.finish_reason, int):
-                class MockFinishReason:
-                    def __init__(self, val):
-                        self.name = str(val)
-                candidate.finish_reason = MockFinishReason(candidate.finish_reason)
-    return _original_response_to_result(response, *args, **kwargs)
+PATCH_CODE = """
+def _patched_response_to_result(response, stream=False, prev_usage=None):
+    llm_output = {"prompt_feedback": proto.Message.to_dict(response.prompt_feedback)}
 
-langchain_google_genai.chat_models._response_to_result = _patched_response_to_result
+    prev_input_tokens = prev_usage["input_tokens"] if prev_usage else 0
+    prev_output_tokens = prev_usage["output_tokens"] if prev_usage else 0
+    prev_total_tokens = prev_usage["total_tokens"] if prev_usage else 0
+
+    try:
+        input_tokens = response.usage_metadata.prompt_token_count
+        output_tokens = response.usage_metadata.candidates_token_count
+        total_tokens = response.usage_metadata.total_token_count
+        cache_read_tokens = response.usage_metadata.cached_content_token_count
+        if input_tokens + output_tokens + cache_read_tokens + total_tokens > 0:
+            lc_usage = UsageMetadata(
+                input_tokens=input_tokens - prev_input_tokens,
+                output_tokens=output_tokens - prev_output_tokens,
+                total_tokens=total_tokens - prev_total_tokens,
+                input_token_details={"cache_read": cache_read_tokens},
+            )
+        else:
+            lc_usage = None
+    except AttributeError:
+        lc_usage = None
+
+    generations = []
+
+    for candidate in response.candidates:
+        generation_info = {}
+        if candidate.finish_reason:
+            # FIX: Safe extraction for integer finish reasons
+            if hasattr(candidate.finish_reason, "name"):
+                generation_info["finish_reason"] = candidate.finish_reason.name
+            else:
+                generation_info["finish_reason"] = str(candidate.finish_reason)
+                
+        generation_info["safety_ratings"] = [
+            proto.Message.to_dict(safety_rating, use_integers_for_enums=False)
+            for safety_rating in candidate.safety_ratings
+        ]
+        message = _parse_response_candidate(candidate, streaming=stream)
+        message.usage_metadata = lc_usage
+        if stream:
+            generations.append(
+                ChatGenerationChunk(
+                    message=cast(AIMessageChunk, message),
+                    generation_info=generation_info,
+                )
+            )
+        else:
+            generations.append(
+                ChatGeneration(message=message, generation_info=generation_info)
+            )
+    if not response.candidates:
+        logger.warning(
+            "Gemini produced an empty response. Continuing with empty message\\n"
+            f"Feedback: {response.prompt_feedback}"
+        )
+        if stream:
+            generations = [
+                ChatGenerationChunk(
+                    message=AIMessageChunk(content=""), generation_info={}
+                )
+            ]
+        else:
+            generations = [ChatGeneration(message=AIMessage(""), generation_info={})]
+    return ChatResult(generations=generations, llm_output=llm_output)
+"""
+exec(PATCH_CODE, langchain_google_genai.chat_models.__dict__)
+langchain_google_genai.chat_models._response_to_result = langchain_google_genai.chat_models._patched_response_to_result
 # ---------------------------------------------------
 
 # Configure logging
