@@ -55,13 +55,13 @@ graph TB
 
 ## 🛠️ System Components
 
-### 1. Frontend (Next.js 14+)
+### 1. Frontend (Next.js 14 on Vercel)
 - **Landing Page**: Built following the PAS (Problem-Agitation-Solution) marketing copy framework with violet and indigo accents on a `bg-gray-950` background.
 - **Floating Chat Widget**: Expandable chat panel styled with custom glassmorphism, responsive width controls, smooth entrance/exit animations, and auto-scrolling capabilities.
 - **Client hook ([useChat.ts](file:///d:/Code/Projects/datacrumbs/capstone_project_3/frontend/src/hooks/useChat.ts))**: Manages short-term conversation states, formats role/content historical payloads, and handles error states.
-- **Next.js Proxy ([route.ts](file:///d:/Code/Projects/datacrumbs/capstone_project_3/frontend/src/app/api/chat/route.ts))**: Serves as a middleman route to proxy frontend fetch requests to the Python FastAPI backend to completely bypass CORS headers issues.
+- **Direct API Connection ([api.ts](file:///d:/Code/Projects/datacrumbs/capstone_project_3/frontend/src/lib/api.ts))**: The browser sends fetch requests directly to the live Railway backend to intentionally bypass Vercel Serverless Function 10-second timeouts.
 
-### 2. Backend (Python FastAPI)
+### 2. Backend (Python FastAPI on Railway)
 - **FastAPI Engine ([main.py](file:///d:/Code/Projects/datacrumbs/capstone_project_3/backend/main.py))**: Handles server startup routines, runs background FAISS vector store initialization on startup, and exposes API chat endpoints.
 - **ReAct Agent Executor ([agent_service.py](file:///d:/Code/Projects/datacrumbs/capstone_project_3/backend/services/agent_service.py))**: Executes the main reasoning loops. Equipped with a custom agent template instructing the agent to follow a **Listen ➔ Analyze ➔ Identify ➔ Communicate ➔ Verify** workflow.
 - **RAG Service ([rag_service.py](file:///d:/Code/Projects/datacrumbs/capstone_project_3/backend/services/rag_service.py))**: Loads local files (`Company_sample.txt` and `Company_products.xlsx`), splits content into semantic chunks using a `RecursiveCharacterTextSplitter`, embeds them using Google AI, and indexes them with a local `faiss-cpu` vector store.
@@ -117,6 +117,16 @@ During the development process, several critical integration, validation, compil
 - **The Cause**: The Google Generative AI API (Gemma endpoint) occasionally returns unmapped integer values for a candidate's `finish_reason` (e.g., `19`). The `langchain-google-genai` library blindly attempts to access `.name` on this field, expecting it to be a protobuf Enum, causing the runtime crash.
 - **The Solution**: Injected a runtime Python monkey-patch in [main.py](file:///d:/Code/Projects/datacrumbs/capstone_project_3/backend/main.py#L16-L34). The patch intercepts the response candidate validation method and wraps raw integers in a mock class exposing a `.name` attribute.
 
+### 7. Vercel 502 Bad Gateway / 10-Second Timeout
+- **The Issue**: Live deployments failed with a 502 Bad Gateway exactly 10 seconds into a conversation.
+- **The Cause**: Vercel's free tier has a strict 10-second limit for serverless functions. ReAct agent loops taking longer than 10 seconds triggered Vercel's edge network to prematurely sever the connection.
+- **The Solution**: Rewired the frontend architecture in [api.ts](file:///d:/Code/Projects/datacrumbs/capstone_project_3/frontend/src/lib/api.ts) to bypass Vercel's serverless `/api` layer and execute `fetch` requests directly from the client's browser to the live Railway domain, which enforces no such hard timeouts.
+
+### 8. Pydantic-Settings Railway Variable Injection Failures
+- **The Issue**: Initial Railway deployments crashed with `ValidationError` citing missing environment variables, even when configured via Railway dashboard.
+- **The Cause**: `.env` is correctly git-ignored. Railway runtime required fully instantiated environment variables, but Pydantic's alias bindings occasionally require careful handling.
+- **The Solution**: Validated `pydantic-settings` alias structures. More importantly, automated trailing-slash sanitization (`.rstrip("/")`) on `CORS_ORIGINS` parsing in [main.py](file:///d:/Code/Projects/datacrumbs/capstone_project_3/backend/main.py) to prevent preflight rejections caused by slight mismatches in user configurations.
+
 ---
 
 ## 🔍 Model Configuration & Modifications Guide
@@ -169,18 +179,17 @@ GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour\nPrivate\nKey\n-----END PR
 CORS_ORIGINS="http://localhost:3000"
 ```
 
-### 2. Run the FastAPI Backend
-```bash
-# Navigate to backend directory
-cd backend
+### 2. Live Production Deployment
+**Backend (Railway)**
+- Connected repository directly to Railway.
+- Project uses the auto-generated root `requirements.txt` and `Procfile` to build and serve FastAPI via `uvicorn main:app --host 0.0.0.0 --port $PORT`.
+- Add environment variables manually in the Railway dashboard Variables tab.
 
-# Install python dependencies
-pip install -r requirements.txt
+**Frontend (Vercel)**
+- Set Vercel "Root Directory" to `frontend`.
+- Expose the Railway public URL via the `NEXT_PUBLIC_API_URL` environment variable (e.g., `https://my-railway-app.up.railway.app`).
 
-# Start the uvicorn server (automatically runs database indexing)
-python main.py
-```
-The server will boot up and run on [http://localhost:8000](http://localhost:8000).
+### 3. Run Locally (Development)
 
 ### 3. Run the Next.js Frontend
 ```bash
