@@ -118,7 +118,7 @@ def _get_embeddings() -> GoogleGenerativeAIEmbeddings:
     """Instantiate the Google Generative AI embedding model."""
     settings = get_settings()
     return GoogleGenerativeAIEmbeddings(
-        model="models/text-embedding-002",
+        model="models/embedding-001",
         google_api_key=settings.google_api_key,
     )
 
