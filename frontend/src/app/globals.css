@@ -11,7 +11,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    @apply antialiased selection:bg-violet-500 selection:text-white;
+    @apply antialiased;
   }
 }
 
