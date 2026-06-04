@@ -1,0 +1,24 @@
+Dummy Data for Google Sheets
+
+--- ORDERS TAB ---
+Copy and paste this into the "Orders" tab of your Google Sheet.
+Columns: Order ID | Customer | Item | Status | Amount
+
+Order ID	Customer	Item	Status	Amount
+ORD-1001	Alice Smith	ACME Enterprise Suite - Basic	Delivered	$299.99
+ORD-1002	Bob Johnson	ACME CRM Platform	Processing	$149.99
+ORD-1003	Charlie Brown	ACME Cloud Security Shield	Delivered	$399.99
+ORD-1004	Diana Prince	ACME Data Analytics Dashboard	Shipped	$249.99
+ORD-1005	Evan Wright	ACME AI Implementation Toolkit	Delivered	$799.99
+ORD-1006	Fiona Gallagher	ACME Workflow Automator	Processing	$199.99
+ORD-1007	George Costanza	ACME CRM Platform	Cancelled	$149.99
+ORD-1008	Hannah Abbott	ACME Team Collaboration Hub	Delivered	$89.99
+
+--- TICKETS TAB ---
+Copy and paste this into the "Tickets" tab of your Google Sheet.
+Columns: Ticket ID | Order ID | Reason | Created At
+
+Ticket ID	Order ID	Reason	Created At
+TKT-20240101-01	ORD-1001	Need help setting up the software	2024-01-01T10:00:00Z
+TKT-20240105-02	ORD-1007	Ordered by mistake, requesting refund	2024-01-05T14:30:00Z
+TKT-20240110-03	ORD-1003	Question about security compliance	2024-01-10T09:15:00Z

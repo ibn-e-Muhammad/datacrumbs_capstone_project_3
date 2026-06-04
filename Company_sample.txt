@@ -1,0 +1,299 @@
+ACME Corporation - Company Overview and Operations Manual
+====================================================================
+Version 2.1 - Last Updated: January 2024
+
+1. COMPANY MISSION AND VISION
+   Our mission is to deliver innovative technology solutions that empower
+   businesses to achieve their full potential. We envision a future where
+   technology seamlessly integrates with human creativity to solve complex
+   challenges and drive sustainable growth.
+
+2. COMPANY HISTORY
+   ACME Corporation was founded in 2010 by a team of passionate engineers
+   and business leaders. Starting with just five employees in a small office,
+   we have grown to become a leading technology solutions provider with
+   over 500 employees across 12 countries. Our journey has been marked by
+   continuous innovation, strategic partnerships, and an unwavering commitment
+   to customer success.
+
+3. CORE VALUES
+   Innovation: We embrace new ideas and technologies that push boundaries.
+   Integrity: We conduct business with honesty, transparency, and ethical
+   standards in all our interactions.
+   Excellence: We strive for the highest quality in everything we do.
+   Collaboration: We believe in the power of teamwork and mutual respect.
+   Sustainability: We are committed to environmental responsibility and
+   social impact.
+
+4. ORGANIZATIONAL STRUCTURE
+   ACME Corporation operates with a matrix organizational structure that
+   combines functional expertise with project-based teams. Our leadership
+   team includes the CEO, CFO, CTO, COO, and VP of Sales, each leading
+   specialized departments while collaborating on strategic initiatives.
+   The company is divided into four major divisions: Engineering, Sales
+   and Marketing, Operations, and Human Resources.
+
+5. PRODUCTS AND SERVICES
+   We offer a comprehensive suite of enterprise software solutions including
+   cloud-based CRM platforms, data analytics tools, custom software development,
+   and IT consulting services. Our flagship product, ACME Enterprise Suite,
+   serves over 2,000 clients worldwide. Additionally, we provide specialized
+   services in cybersecurity, digital transformation, and AI implementation.
+
+   Product Categories:
+   - ACME Enterprise Suite (Basic, Professional, Premium tiers)
+   - ACME CRM Platform
+   - ACME Data Analytics Dashboard
+   - ACME Cloud Security Shield
+   - ACME AI Implementation Toolkit
+   - Custom Software Development Services
+   - IT Consulting and Advisory Services
+
+6. TARGET MARKETS
+   Our primary market segments include mid to large-sized enterprises in the
+   financial services, healthcare, manufacturing, and retail sectors. We
+   also serve government agencies and non-profit organizations. Our solutions
+   are designed to scale from 50 to 50,000+ employees, making us versatile
+   partners for businesses at various stages of growth.
+
+7. COMPETITIVE ADVANTAGES
+   What sets ACME Corporation apart is our unique combination of technical
+   excellence and deep industry expertise. Our proprietary algorithms and
+   machine learning models provide insights that competitors cannot match.
+   Additionally, our 24/7 customer support and dedicated account management
+   teams ensure our clients receive personalized attention and rapid problem
+   resolution.
+
+8. CLIENT SUCCESS STORIES
+   One of our most notable achievements was helping Global Finance Corp
+   reduce operational costs by 35% through our automated workflow solutions.
+   Another success story involves MedTech Solutions, which improved patient
+   care outcomes by implementing our data analytics platform. These results
+   demonstrate our commitment to delivering measurable value to every client.
+
+9. RESEARCH AND DEVELOPMENT
+   We invest 15% of our annual revenue in research and development activities.
+   Our R&D team consists of 80 engineers and data scientists working on
+   cutting-edge technologies including artificial intelligence, blockchain,
+   quantum computing applications, and sustainable technology solutions.
+   Our innovation lab has filed 47 patents in the past three years.
+
+10. QUALITY ASSURANCE
+    Quality is embedded in every aspect of our operations. We follow ISO
+    9001:2015 quality management standards and have achieved SOC 2 Type II
+    certification. Our software development processes adhere to agile
+    methodologies with continuous integration and automated testing at every
+    stage. We maintain a customer satisfaction score of 4.7 out of 5.0.
+
+11. DATA SECURITY AND COMPLIANCE
+    Data security is paramount at ACME Corporation. We are GDPR compliant,
+    HIPAA certified for healthcare clients, and maintain PCI DSS Level 1
+    certification for payment processing. Our security team conducts regular
+    penetration testing and vulnerability assessments. All data is encrypted
+    both in transit and at rest using industry-standard protocols.
+
+12. SUSTAINABILITY INITIATIVES
+    We are committed to carbon neutrality by 2030 and have implemented
+    comprehensive sustainability programs. Our offices use 100% renewable
+    energy, and we have reduced paper consumption by 90% through digital
+    transformation initiatives. We also support reforestation projects and
+    have partnered with environmental organizations to offset our carbon
+    footprint.
+
+13. EMPLOYEE BENEFITS AND CULTURE
+    Our employees enjoy competitive compensation packages including health
+    insurance, dental and vision coverage, retirement plans with company
+    matching, and generous paid time off. We offer flexible work arrangements,
+    professional development opportunities, and employee wellness programs.
+    Our culture emphasizes work-life balance, diversity, and inclusion.
+
+====================================================================
+CUSTOMER SUPPORT INFORMATION
+====================================================================
+
+14. RETURN AND REFUND POLICY
+    At ACME Corporation, we want you to be completely satisfied with your
+    purchase. Our return and refund policy is designed to be fair and
+    straightforward:
+
+    Eligibility:
+    - Returns are accepted within 30 days of the original purchase date.
+    - The product must be in its original condition with all original
+      packaging, accessories, and documentation included.
+    - Digital products (software licenses, subscriptions) may be refunded
+      within 14 days of purchase if the product has not been activated or
+      used extensively.
+    - Custom-developed solutions are non-refundable once development work
+      has commenced, unless there is a documented defect.
+
+    Refund Process:
+    - To initiate a return or refund, contact our customer support team
+      via the chat widget, email at support@acmecorp.com, or call
+      1-800-ACME-HELP.
+    - Provide your Order ID, name, and reason for the return.
+    - Our AI assistant can help you create a refund ticket instantly.
+    - Once your return is received and inspected, we will process your
+      refund within 5-7 business days.
+    - Refunds are issued to the original payment method.
+
+    Exceptions:
+    - Products damaged due to misuse or unauthorized modifications are
+      not eligible for return.
+    - Clearance items and promotional bundles are final sale.
+    - Enterprise contracts have separate return terms outlined in the
+      service agreement.
+
+    Exchanges:
+    - We offer free exchanges for the same product (different tier/plan)
+      within 30 days.
+    - Upgrades can be processed with a prorated price difference.
+
+15. SHIPPING INFORMATION
+    ACME Corporation offers multiple shipping options to meet your needs:
+
+    Domestic Shipping (United States):
+    - Standard Shipping: 5-7 business days (FREE on orders over $50)
+    - Express Shipping: 2-3 business days ($12.99)
+    - Next-Day Shipping: 1 business day ($24.99)
+    - All orders are shipped with tracking numbers provided via email.
+
+    International Shipping:
+    - Standard International: 10-15 business days ($19.99)
+    - Express International: 5-7 business days ($39.99)
+    - International orders may be subject to customs duties and taxes,
+      which are the responsibility of the recipient.
+
+    Digital Products:
+    - Software licenses and digital products are delivered instantly via
+      email after payment confirmation.
+    - Download links remain active for 30 days after purchase.
+
+    Order Tracking:
+    - Track your order using the Order ID provided in your confirmation
+      email.
+    - You can also ask our AI assistant to look up your order status
+      by providing your Order ID.
+
+    Shipping Restrictions:
+    - We currently ship to all 50 US states and over 40 countries
+      worldwide.
+    - Some products may have shipping restrictions to certain regions
+      due to export compliance regulations.
+
+16. PAYMENT METHODS
+    We accept a variety of payment methods for your convenience:
+    - Credit Cards: Visa, MasterCard, American Express, Discover
+    - Debit Cards: All major debit cards with Visa/MasterCard logo
+    - PayPal
+    - Apple Pay and Google Pay
+    - Bank Wire Transfer (for enterprise orders over $5,000)
+    - Purchase Orders (for verified business accounts)
+    - Cryptocurrency: Bitcoin and Ethereum (for select products)
+
+    Payment Security:
+    - All transactions are encrypted with 256-bit SSL encryption.
+    - We are PCI DSS Level 1 compliant, the highest level of security
+      certification for payment processing.
+    - We never store your full credit card number on our servers.
+
+17. WARRANTY INFORMATION
+    All ACME Corporation hardware products come with a standard warranty:
+
+    Standard Warranty:
+    - 1-year limited warranty on all hardware products.
+    - Covers manufacturing defects and hardware failures under normal use.
+    - Does not cover damage from accidents, misuse, or unauthorized
+      modifications.
+
+    Extended Warranty:
+    - Available for purchase within 30 days of original order.
+    - Extends coverage to 3 years.
+    - Includes priority support and free replacement.
+
+    Software Warranty:
+    - All software products include free bug fixes and security patches
+      for the duration of your subscription.
+    - Major version upgrades may require additional purchase depending
+      on your plan tier.
+
+18. CUSTOMER SUPPORT HOURS AND CONTACT
+    AI Assistant: Available 24/7 via our website chat widget.
+    Our AI assistant can help with:
+    - Answering questions about products, policies, and services
+    - Looking up order status
+    - Creating refund/return tickets
+    - Providing shipping information
+    - Troubleshooting common issues
+
+    Human Support Agents:
+    - Monday to Friday: 9:00 AM - 6:00 PM (EST)
+    - Saturday: 10:00 AM - 4:00 PM (EST)
+    - Sunday: Closed
+
+    Contact Channels:
+    - Live Chat: Available on our website
+    - Email: support@acmecorp.com (response within 24 hours)
+    - Phone: 1-800-ACME-HELP (1-800-226-3435)
+    - Help Center: help.acmecorp.com
+
+    Escalation:
+    - If you are not satisfied with the resolution provided, you can
+      request to speak with a supervisor.
+    - Enterprise clients have a dedicated account manager who can be
+      reached directly.
+
+19. FREQUENTLY ASKED QUESTIONS (FAQ)
+
+    Q: How do I track my order?
+    A: You can track your order by providing your Order ID (format: ORD-XXXX)
+       to our AI assistant or by visiting our order tracking page. You will
+       also receive tracking updates via email.
+
+    Q: Can I change or cancel my order after placing it?
+    A: Orders can be modified or cancelled within 2 hours of placement.
+       After that, the order enters processing and cannot be changed.
+       Contact support immediately if you need to make changes.
+
+    Q: What if my product arrives damaged?
+    A: If your product arrives damaged, please contact us within 48 hours
+       of delivery with photos of the damage. We will arrange a free
+       replacement or full refund. Our AI assistant can create a ticket
+       for you right away.
+
+    Q: Do you offer volume discounts?
+    A: Yes! We offer tiered pricing for bulk purchases:
+       - 5-9 licenses: 10% discount
+       - 10-24 licenses: 15% discount
+       - 25-49 licenses: 20% discount
+       - 50+ licenses: Contact sales for custom pricing
+
+    Q: How do I upgrade my subscription plan?
+    A: You can upgrade your plan at any time through your account dashboard
+       or by contacting our support team. The price difference will be
+       prorated for the remaining billing period.
+
+    Q: What is your uptime guarantee?
+    A: We guarantee 99.9% uptime for all our cloud-hosted services. In the
+       rare event of downtime exceeding our SLA, we provide service credits
+       as outlined in your service agreement.
+
+    Q: Do you offer a free trial?
+    A: Yes! We offer a 14-day free trial for most of our software products.
+       No credit card required. You can start your trial through our website
+       or by asking our AI assistant.
+
+    Q: How do I reset my password?
+    A: Visit our login page and click "Forgot Password." You'll receive a
+       password reset link via email within 5 minutes. If you don't receive
+       it, check your spam folder or contact support.
+
+    Q: Can I get a demo before purchasing?
+    A: Absolutely! We offer personalized product demos for all our solutions.
+       Schedule a demo through our website or ask our AI assistant to help
+       you set one up.
+
+    Q: What happens when my subscription expires?
+    A: When your subscription expires, you'll retain read-only access to
+       your data for 30 days. After that, your data is archived for 90 days
+       before permanent deletion. You can reactivate your subscription at
+       any time during this period.
