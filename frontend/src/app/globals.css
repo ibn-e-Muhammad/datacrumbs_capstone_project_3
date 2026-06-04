@@ -17,16 +17,22 @@
 
 @layer utilities {
   .glass {
-    @apply backdrop-blur-xl border border-gray-800;
-    background-color: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgb(31 41 55); /* border-gray-800 */
+    background-color: rgba(17, 24, 39, 0.6); /* bg-gray-900/60 */
   }
   
   .glass-card {
-    @apply bg-gray-900 border border-gray-800;
+    background-color: rgb(17 24 39); /* bg-gray-900 */
+    border: 1px solid rgb(31 41 55); /* border-gray-800 */
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, #a78bfa, #818cf8); /* from-violet-400 to-indigo-400 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 
@@ -38,10 +44,11 @@
   background: transparent;
 }
 .chat-scroll::-webkit-scrollbar-thumb {
-  @apply bg-gray-800 rounded-full;
+  background-color: rgb(31 41 55); /* bg-gray-800 */
+  border-radius: 9999px; /* rounded-full */
 }
 .chat-scroll::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-700;
+  background-color: rgb(55 65 81); /* bg-gray-700 */
 }
 
 /* Typing Indicator Animation */
