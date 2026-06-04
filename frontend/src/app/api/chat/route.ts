@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { ChatRequest } from "@/types/chat";
 
 // Backend URL is localhost:8000
-const BACKEND_URL = process.env.BACKEND_URL || "http://127.0.0.1:8000";
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:7991/api";
 
 export async function POST(request: Request) {
   try {
