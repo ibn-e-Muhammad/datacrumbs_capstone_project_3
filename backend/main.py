@@ -13,6 +13,26 @@ from models.schemas import ChatRequest, ChatResponse, HealthResponse
 from services.rag_service import initialize_vector_store
 from services.agent_service import chat
 
+# --- Monkey Patch for langchain-google-genai bug ---
+import langchain_google_genai.chat_models
+_original_response_to_result = langchain_google_genai.chat_models._response_to_result
+
+def _patched_response_to_result(response, *args, **kwargs):
+    # The Gemma API occasionally returns unmapped integer finish reasons (e.g., 19).
+    # This crashes the SDK when it blindly tries to access `candidate.finish_reason.name`.
+    # We intercept the response and mock the finish_reason if it's a raw integer.
+    if hasattr(response, "candidates") and response.candidates:
+        for candidate in response.candidates:
+            if hasattr(candidate, "finish_reason") and isinstance(candidate.finish_reason, int):
+                class MockFinishReason:
+                    def __init__(self, val):
+                        self.name = str(val)
+                candidate.finish_reason = MockFinishReason(candidate.finish_reason)
+    return _original_response_to_result(response, *args, **kwargs)
+
+langchain_google_genai.chat_models._response_to_result = _patched_response_to_result
+# ---------------------------------------------------
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
