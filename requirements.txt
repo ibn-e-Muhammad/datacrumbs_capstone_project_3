@@ -1,1 +1,35 @@
--r backend/requirements.txt
+# ============================================================
+# ACME Corporation - AI Customer Support Backend Dependencies
+# ============================================================
+
+# --- Web Framework ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# --- LangChain Core ---
+langchain==0.3.14
+langchain-core==0.3.30
+langchain-community==0.3.14
+
+# --- Google Generative AI (Gemini) ---
+langchain-google-genai==2.0.8
+google-generativeai>=0.8.0
+
+# --- Vector Store ---
+faiss-cpu==1.9.0.post1
+
+# --- Document Loaders ---
+unstructured
+openpyxl==3.1.5
+
+# --- Google Sheets ---
+gspread==6.1.4
+google-auth==2.37.0
+
+# --- Environment & Config ---
+python-dotenv==1.0.1
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# --- Security ---
+python-multipart==0.0.20
