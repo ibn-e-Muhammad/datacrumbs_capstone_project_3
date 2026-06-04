@@ -121,12 +121,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Configure CORS
-origins = [origin.strip().rstrip("/") for origin in settings.cors_origins.split(",") if origin.strip()]
+# Configure CORS (Allow all origins for embeddable chat widget)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
